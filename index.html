@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>StreamAN — Nonton anime: home · search · detail · watch</title>
+    <meta
+      name="description"
+      content="StreamAN — frontend streaming anime satu file: katalog, pencarian, detail, dan halaman tonton dengan rantai fallback provider Otakudesu → KuramaAnime → Oploverz (konten) dan Jikan → AniList (metadata)."
+    />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph / Twitter: cukup metadata teks (tidak ada aset eksternal supaya
+         build single-file tetap mandiri). -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StreamAN" />
+    <meta property="og:title" content="StreamAN — nonton anime" />
+    <meta
+      property="og:description"
+      content="Home, pencarian, detail, dan halaman tonton. Metadata publik (Jikan/AniList); episode-stream lewat gateway berlisensi."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="StreamAN — nonton anime" />
+
+    <!-- Favicon inline: mark yang sama dengan header, tanpa berkas tambahan. -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23ff5138'/%3E%3Cpath d='M5.5 6.5h8.2a4.1 4.1 0 0 1 0 8.2H8.9L5.5 18.1V6.5Z' fill='%23fff'/%3E%3Ccircle cx='17.6' cy='7.3' r='1.7' fill='%23fff'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript
+      >StreamAN butuh JavaScript: seluruh katalog dimuat dari service layer di
+      sisi klien.</noscript
+    >
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+
+
+

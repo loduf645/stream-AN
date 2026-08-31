@@ -1,0 +1,149 @@
+/*
+ * ═══════════════════════════════════════════════════════════════════════════
+ * TAILWIND v4 — TOKEN DESAIN STREAMAN
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Tidak ada tailwind.config.js: v4 membaca token dari blok @theme di bawah.
+ * Nama token dipakai apa adanya oleh kelas yang sudah ada di komponen
+ * (bg-ink-850, text-bone-400, text-signal-500, bg-mint, text-sky-signal,
+ * text-amber-signal, font-display, animate-pulse-dot, animate-spin-slow).
+ *
+ * Tidak ada font/aset eksternal: build ini harus tetap tampil benar saat
+ * dibuka sebagai satu file HTML (vite-plugin-singlefile), termasuk dari disk.
+ */
+@import "tailwindcss";
+
+@theme {
+  /* ─── permukaan & teks ─── */
+  --color-ink-950: #07080c;
+  --color-ink-900: #0d0f16;
+  --color-ink-850: #12151e;
+
+  --color-bone-50: #f7f5f2;
+  --color-bone-100: #eceae4;
+  --color-bone-200: #d7d3ca;
+  --color-bone-300: #b4afa6;
+  --color-bone-400: #8d8880;
+  --color-bone-500: #6a665e;
+  --color-bone-600: #4c4941;
+
+  /* ─── aksen ─── */
+  --color-signal-400: #ff7a63;
+  --color-signal-500: #ff5138;
+  --color-signal-600: #e03a21;
+  --color-mint: #56e0b0;
+  --color-sky-signal: #6cc4ff;
+  --color-amber-signal: #ffc46b;
+
+  /* ─── tipografi ─── */
+  --font-display: "Bahnschrift", "DIN Alternate", "Roboto Condensed", "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* ─── animasi ─── */
+  --animate-pulse-dot: pulse-dot 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin-slow: spin-slow 1.8s linear infinite;
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink-950);
+    color: var(--color-bone-100);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-signal-500) 45%, transparent);
+    color: var(--color-bone-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal-500);
+    outline-offset: 2px;
+  }
+
+  /* poster/trailer tidak boleh menggeser layout saat font & gambar menyusul */
+  img {
+    display: block;
+  }
+}
+
+@layer components {
+  /* Latar halaman: dipakai Layout & ErrorBoundary (`streaman-bg`). */
+  .streaman-bg {
+    background-color: var(--color-ink-950);
+    background-image:
+      radial-gradient(1100px 520px at 10% -10%, color-mix(in oklab, var(--color-signal-500) 13%, transparent), transparent 62%),
+      radial-gradient(900px 460px at 95% -5%, color-mix(in oklab, var(--color-sky-signal) 9%, transparent), transparent 66%),
+      linear-gradient(180deg, color-mix(in oklab, var(--color-ink-900) 90%, black) 0%, var(--color-ink-950) 38%);
+    background-attachment: fixed;
+  }
+
+  /* Placeholder loading; dipakai Skeleton dan bar progres Watch. */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: color-mix(in oklab, var(--color-bone-500) 16%, transparent);
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in oklab, var(--color-bone-200) 12%, transparent) 50%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: skeleton-sweep 1.4s ease-in-out infinite;
+  }
+
+  /* Daftar episode horizontal: tanpa scrollbar tapi tetap bisa di-scroll. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+@keyframes skeleton-sweep {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+  .animate-pulse-dot,
+  .animate-spin-slow {
+    animation: none;
+  }
+}
+
+
+
+
+
